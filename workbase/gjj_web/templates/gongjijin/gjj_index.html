@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>公积金查询系统</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/gjj_index.css' %}" />
+    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js'%}"></script>
+</head>
+<body>
+    <div class="main"></div>
+    <div class="rhead">
+            <ul class="rheadul">
+                <li class="rheadli rheadli1">
+                    <span class="rheadli_span1">
+                        <span class="rheadli_span21">
+                            <img src="{% static 'images/reg_img01.png' %}" class="rheadli_img1" />
+                        </span>
+                    </span>
+                    填写身份信息
+                </li>
+                <li class="rheadli rheadli2">
+                    <span class="rheadli_span1">
+                        <span class="rheadli_span22">
+                            <img src="{% static 'images/reg_img02.png' %}" class="rheadli_img2" />
+                        </span>
+                    </span>
+                    补充用户信息
+                </li>
+                <li class="rheadli rheadli2">
+                    <span class="rheadli_span1">
+                        <span class="rheadli_span22">
+                            <img src="{% static 'images/reg_img03.png' %}" class="rheadli_img3" />
+                        </span>
+                    </span>
+                    完成注册
+                </li>
+            </ul>
+            <ul class="rheadulbg">
+                <li class="rheadulbg_li"></li>
+                <li class="rheadulbg_li rheadulbg_li1"></li>
+                <li class="rheadulbg_li rheadulbg_li1"></li>
+                <li class="rheadulbg_li rheadulbg_li2"></li>
+                <li class="rheadulbg_li rheadulbg_li2"></li>
+                <li class="rheadulbg_li"></li>
+            </ul>
+        </div>
+        <form class="reg" id="reg_form" method="post" action="#">
+            <ul class="rcon">
+                <li class="rconli">
+                    <span class="rconli_span">省/区选择 </span>
+                        <div class="province">
+                            <input type="text" class="inval inval1" id ="selectProvince" value="" onchange="query()" placeholder="点击"/>
+                            <ul class="rconli show" id="allProvince" style="display: none;">
+                            </ul>
+                            <ul class="rconli show" id="allProvince2" style="display: none;">
+                            </ul>
+                        </div>
+                        <script type="text/javascript" src="{% static 'js/pinying.js'%}"></script>
+                        <script type="text/javascript" src="{% static 'js/liandong.js'%}"></script>
+
+                </li>
+                <li class="rconli">
+                    <span class="rconli_span">账号名</span>
+                    <input type="text" class="inval inval1" id="userInfoVO.name" name="userInfoVO.name" placeholder="请输入用户名"  />
+                    <span class="rconli_del"><img src="{% static 'images/reg_del.png' %}" class="rconli_del_img" /></span>
+                </li>
+                <li class="rconli">
+                    <span class="rconli_span">账号密码</span>
+                    <input type="text" id="userInfoVO.certNo" name="userInfoVO.certNo" class="inval inval1" placeholder="请输账号密码" />
+                    <span class="rconli_del"><img src="{% static 'images/reg_del.png' %}" class="rconli_del_img" /></span>
+                </li>
+                <li class="rconli">
+                    <span class="rconli_span">验 证 码</span>
+                    <input type="text" id="_@IMGRC@_" name="_@IMGRC@_" class="inval inval2" placeholder="请输入验证码" />
+                    <img src="data:image/jpeg;base64,{{ img_src }}" class="yzm" />
+                </li>
+            </ul>
+            <label id="error_div" class="error">
+                    {{ msg | safe }}
+            </label>
+            <button class="btn2" type="button">下一步</button>
+            <button class="btn1" id="form_submit" type="submit">下一步</button>
+            <span class="btn1" id="val">{{ customer_id }},{{ serial_no }}</span>
+        </form>
+        <p class="rfoot">如果您没有办理过贷款或正在使用的信用卡，请直接<br/>登录中国人民行银征信中心网站查询。</p>
+	</div>
+
+</body>
+</html>

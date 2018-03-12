@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="App" id="ng-app" class="ng-scope">
+<head>
+    <style type="text/css">@charset "UTF-8";
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+        display: none !important;
+    }
+
+    ng\:form {
+        display: block;
+    }
+
+    .ng-animate-block-transitions {
+        transition: 0s all !important;
+        -webkit-transition: 0s all !important;
+    }
+
+    .ng-hide-add-active, .ng-hide-remove {
+        display: block !important;
+    }</style>
+    <meta charset="UTF-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-store, must-revalidate"/>
+    <meta http-equiv="expires" content="0"/>
+    <title>搜狐闪电邮箱</title>
+    <link rel="Shortcut Icon" href="//mail_wf.cdn.sohusce.com/pc/img/favicon.f3e1d0ca.ico"/>
+    <link rel="stylesheet" type="text/css" href="//mail_wf.cdn.sohusce.com/pc/css/common.688e6026.css"/>
+    <link rel="stylesheet" type="text/css" href="//mail_wf.cdn.sohusce.com/pc/css/index.a36e92fe.css"/>
+    <link rel="stylesheet" type="text/css" href="//mail_wf.cdn.sohusce.com/pc/css/contacts.0e77e22f.css"/>
+    <link rel="stylesheet" type="text/css" href="//mail_wf.cdn.sohusce.com/pc/css/setting.cadf6caf.css"/>
+    <link rel="stylesheet" type="text/css" href="//mail_wf.cdn.sohusce.com/pc/css/write.c5d14c28.css"/>
+    <link rel="stylesheet" type="text/css" href="//mail_wf.cdn.sohusce.com/pc/css/help.7d98bcd9.css"/>
+    <link rel="stylesheet" type="text/css" href="//mail_wf.cdn.sohusce.com/pc/css/error.63f994fe.css"/>
+    <link rel="stylesheet" type="text/css" id="skinStyle" name="skinStyle"/>
+    <link rel="stylesheet" type="text/css"
+          href="//mail_wf.cdn.sohusce.com/pc/components/jquery/jquery-flexslider/flexslider.192efc16.css"/>
+    <link rel="stylesheet" href="//mail_wf.cdn.sohusce.com/pc/css/style.ab941cee.css"/>
+</head>
+<body><!-- uiView: mailFrame -->
+<div class="frame ng-scope" ui-view="mailFrame" id="SkinClass"></div><!-- uiView: mailContent -->
+<div class="content ng-scope" ui-view="mailContent" id="mailContent"></div><!-- uiView: outMail -->
+<div class="h100 min-width-1000 ng-scope" ui-view="outMail">
+    <div id="loginDiv" class="login pos-r ng-scope" ng-controller="loginCtrl">
+        <style type="text/css">body {
+            overflow: auto
+        }
+
+        .login {
+            transition: all .5s;
+            -webkit-transition: all .5s
+        }
+
+        ::-ms-clear, ::-ms-reveal {
+            display: none
+        }
+
+        .area {
+            width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden
+        }
+
+        .out-body {
+            height: 515px
+        }
+
+        .out-footer {
+            margin: 0 auto;
+            margin-top: 20px;
+            text-align: center;
+            line-height: 1.5
+        }
+
+        .out-footer .out-footer-space {
+            margin-left: 16px
+        }
+
+        .out-header {
+            height: 80px
+        }
+
+        #loginBody {
+            position: relative;
+            width: 100%;
+            height: 515px;
+            transition: background .5s;
+            -webkit-transition: background .5s
+        }
+
+        #theme {
+            position: relative;
+            clear: both;
+            background-repeat: no-repeat;
+            background-position: left top;
+            transition: background .5s;
+            -webkit-transition: background .5s
+        }
+
+        .themeCtrl {
+            position: absolute;
+            left: 50%;
+            bottom: 12px;
+            margin-right: -405px;
+            text-align: right
+        }
+
+        .themeCtrl span {
+            cursor: pointer;
+            width: 6px;
+            height: 6px;
+            display: inline-block;
+            border: 2px solid #bcbcbc;
+            border-radius: 50%;
+            margin: 2px 4px;
+            filter: alpha(opacity=80);
+            -moz-opacity: .8;
+            -khtml-opacity: .8;
+            opacity: .8
+        }
+
+        .inside-box-shadow {
+            -webkit-box-shadow: inset 0 1px 5px #dbdbdb;
+            -moz-box-shadow: inset 0 1px 5px #dbdbdb;
+            box-shadow: inset 0 1px 5px #dbdbdb
+        }
+
+        .login-box-shadow {
+            -webkit-box-shadow: 0 0 0 rgba(23, 23, 23, .13), 0 0 0 rgba(23, 23, 23, .13), 0 0 0 rgba(23, 23, 23, .13), 0 10px 10px rgba(23, 23, 23, .13);
+            -moz-box-shadow: 0 0 0 rgba(23, 23, 23, .13), 0 0 0 rgba(23, 23, 23, .13), 0 0 0 rgba(23, 23, 23, .13), 0 10px 10px rgba(23, 23, 23, .13);
+            box-shadow: 0 0 0 rgba(23, 23, 23, .13), 0 0 0 rgba(23, 23, 23, .13), 0 0 0 rgba(23, 23, 23, .13), 0 5px 10px rgba(23, 23, 23, .13)
+        }
+
+        .logo-box {
+            position: absolute;
+            top: 30px
+        }
+
+        .logo-box img {
+            width: 160px
+        }
+
+        .link-box {
+            margin: 45px 20px 0 0;
+            color: #666
+        }
+
+        .link-box a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #666;
+            text-decoration: none
+        }
+
+        .form-background {
+            text-align: center;
+            width: 100%
+        }
+
+        .form-background img {
+            width: 100%;
+            height: 550px
+        }
+
+        .login-form {
+            box-sizing: border-box;
+            padding: 24px 30px 28px 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 340px;
+            background: #fcfcfc;
+            position: absolute;
+            left: 63%;
+            top: 55px;
+            z-index: 9999
+        }
+
+        .login-form input {
+            font: 16px/1 'microsoft yahei'
+        }
+
+        .login-form h2 {
+            font-size: 18px;
+            margin-bottom: 19px;
+            font-weight: 200
+        }
+
+        .login-a {
+            display: block;
+            width: 63%;
+            height: 480px;
+            position: absolute;
+            z-index: 10;
+            outline: 0
+        }
+
+        .field {
+            position: relative
+        }
+
+        .f-account, .f-pwd {
+            padding-bottom: 19px
+        }
+
+        .f-forget {
+            height: 20px;
+            text-align: right
+        }
+
+        .f-forget a {
+            color: #666
+        }
+
+        .ipt-box {
+            border: 1px solid #ccc;
+            background: #fff
+        }
+
+        .ipt-box input {
+            border: none;
+            padding: 0 10px;
+            font-size: 14px
+        }
+
+        .btn-login, .ipt-box input {
+            display: block
+        }
+
+        .ipt-box input {
+            width: 100%;
+            height: 45px;
+            line-height: 45px
+        }
+
+        .btn-login {
+            height: 60px;
+            line-height: 67px;
+            width: 289px;
+            background-color: #FFF;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            left: -7px;
+            background-image: url(//mail_wf.cdn.sohusce.com/pc/img/login.3d3cdc9e.png);
+            outline: 0
+        }
+
+        .btn-login:hover {
+            background-image: url(//mail_wf.cdn.sohusce.com/pc/img/login-focus.b8b44f5d.png)
+        }
+
+        .fontFamily {
+            font-family: "宋体", "Microsoft YaHei", "微软雅黑", helvetica, "Hiragino Sans GB" !important;
+            font-weight: 700 !important
+        }
+
+        .account-tips {
+            min-height: 10px;
+            top: 32px;
+            left: -1px;
+            right: -1px;
+            z-index: 1
+        }
+
+        .account-tips .tip-one {
+            line-height: 30px;
+            cursor: pointer;
+            background: #EDEDED;
+            padding-left: 10px
+        }
+
+        .account-tips .tip-one:hover {
+            background: #DDD
+        }
+
+        .tipHolder {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            color: red;
+            padding-left: 4px
+        }
+
+        .f-remember {
+            margin: 2px 0 12px 0;
+            color: #AEAEAE
+        }
+
+        .f-captcha {
+            margin-bottom: 10px
+        }
+
+        .f-captcha .ipt-box {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 50%
+        }
+
+        .f-captcha img {
+            cursor: pointer
+        }
+
+        .f-captcha input {
+            height: 100%
+        }
+
+        .f-register {
+            background-color: #E9E9E9
+        }
+
+        .f-register:hover {
+            background-color: #F6F6F6
+        }
+
+        .f-href {
+            color: #FF5959
+        }
+
+        input[type=checkbox] {
+            position: relative;
+            top: 2px
+        }
+
+        .f-register a {
+            border: 1px solid #DFDFDF;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            font-size: 12px;
+            color: #666;
+            display: block;
+            text-decoration: none
+        }
+
+        .passport hr {
+            height: 1px;
+            border: 0;
+            margin-bottom: 28px;
+            background: #bcbcbc
+        }
+
+        .passport p {
+            padding-bottom: 22px
+        }
+
+        .passport .font-size-14 {
+            font-size: 14px
+        }
+
+        .passport .heigh40 {
+            height: 40px;
+            line-height: 40px
+        }
+
+        .passport .width50 {
+            width: 50%
+        }
+
+        .passport .number-of-times {
+            float: right;
+            color: #B8B8B8
+        }
+
+        .passport .pointer {
+            cursor: pointer
+        }
+
+        .passport .button {
+            height: 40px;
+            padding-top: 40px
+        }
+
+        .passport .button span {
+            display: inline-block;
+            height: 100%;
+            line-height: 40px;
+            width: 130px;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 2px;
+            background: #FF5F5F;
+            color: #FFF
+        }
+
+        .passport .button .second {
+            float: right;
+            background: #B7B7B7
+        }
+
+        .passport .button .width100 {
+            width: 100%
+        }
+
+        .passport .font14 {
+            font-size: 14px
+        }
+
+        .passport .green {
+            color: #35951B
+        }
+
+        .passport .red {
+            color: #FF5F5F
+        }
+
+        .passport .blue {
+            color: #1B9CD6
+        }
+
+        .passport .gray {
+            color: #A3A3A3 !important
+        }
+
+        .passport .bottom60 {
+            padding-bottom: 60px
+        }
+
+        .passport .bottom-auto {
+            padding-bottom: 6px
+        }
+
+        .control-captcha {
+            margin-top: 20px
+        }
+
+        input.input-captcha {
+            vertical-align: middle;
+            font-size: 14px
+        }
+
+        .btn-captcha {
+            display: inline-block;
+            width: 47%;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            vertical-align: middle;
+            background: #d7d7d7;
+            border: 1px solid #dbdbdb;
+            font-size: 14px;
+            color: #000
+        }
+
+        .btn-captcha.disabled {
+            color: #757575
+        }
+
+        .btn-voice {
+            color: #ff5e5e
+        }
+
+        .btn-voice.disabled {
+            color: #000
+        }
+
+        p.captcha-info {
+            margin-top: 20px;
+            padding: 0
+        }</style>
+        <div class="area out-header">
+            <div class="logo-box fl-l"><img src="//mail_wf.cdn.sohusce.com/pc/img/logo-login.f47235ac.png"/></div>
+            <div class="link-box fl-r"><a href="//www.sohu.com" target="_blank">搜狐首页</a>|<a href="//vip.sohu.com"
+                                                                                            target="_blank">VIP邮箱</a>|<a
+                    href="http://mail-promo.sohusce.com/itunes/?guid=85aa638161" target="_blank">手机邮箱</a>|<a
+                    ui-sref="help" target="_blank" href="#/help">帮助中心</a></div>
+        </div>
+        <div id="loginBody" login-ad="" style="background-color: rgb(236, 236, 236);">
+            <div id="theme" class="area out-body"
+                 style="background-image: url(&quot;//pcmail.cdn.sohusce.com/PCDengLuYeBanner_AppXuanChuan_674x515.png?1506336084&quot;);">
+                <a class="login-a" id="adHref" href="http://mail-promo.sohusce.com/itunes/?guid=85aa638161"
+                   target="_blank"></a>
+                <form ng-submit="loginSubmit()" ng-hide="bindOption.showBindFlag"
+                      class="login-form login-box-shadow ng-pristine ng-valid"><h2>登录搜狐邮箱</h2>
+                    <div class="field f-account">
+                        <div class="ipt-box pos-r"><input
+                                class="addFocus ipt-account ng-pristine ng-valid inside-box-shadow" type="text"
+                                placeholder="请输入您的邮箱" ng-model="account" ng-change="inputChg('account')"
+                                ng-focus="accountFocus()" ng-blur="accountBlur()"/>
+                            <div class="account-tips pos-a ng-hide" ng-show="accountTipsShow">
+                                <!-- ngRepeat: one in accountTipsData track by $index --></div>
+                        </div>
+                        <div class="tipHolder"></div>
+                    </div>
+                    <div class="field f-pwd">
+                        <div class="ipt-box"><input class="addFocus ng-pristine ng-valid" type="password"
+                                                    placeholder="请输入您的密码" ng-model="pwd"
+                                                    ng-change="inputChg('password')"/></div>
+                        <div class="tipHolder ng-binding" ng-bind="loginTip"></div>
+                    </div>
+                    <div class="field f-captcha ng-hide" ng-show="needCaptcha"><img class="dp-b"
+                                                                                    src="https://v4.passport.sohu.com/i/captcha/picture?pagetoken=1515032957453&amp;random=passport403_sdk1515032957453"
+                                                                                    title="点击换一张"
+                                                                                    ng-click="getCaptcha()"/>
+                        <div class="ipt-box pos-a"><input type="text" maxlength="4" placeholder="请输入验证码"
+                                                          ng-model="captcha" class="ng-pristine ng-valid"/></div>
+                        <div class="tipHolder"></div>
+                    </div>
+                    <div class="field f-forget"><a href="https://v4.passport.sohu.com/fe/forgetPassword/1"
+                                                   target="_blank">忘记密码</a></div>
+                    <div class="field"><input type="submit" class="btn-login fontFamily" value="登 录"/></div>
+                    <div class="field f-remember"><label ng-hide="true" class="ng-hide"><input type="checkbox"
+                                                                                               ng-model="remember"
+                                                                                               class="ng-pristine ng-valid"/>
+                        <span>记住登录状态</span></label></div>
+                    <div class="field f-register"><a href="javascript:void(0);" ng-click="register()">还没有搜狐闪电邮？<span
+                            class="f-href">现在注册</span></a></div>
+                </form>
+                <div class="login-form login-box-shadow passport ng-hide" ng-show="bindOption.showBindFlag"><h2>
+                    安全提示</h2>
+                    <hr/>
+                    <div ng-hide="bindOption.bindOk" class=""><p class="font-size-14">您的账号可能存在风险，需要验证手机号</p>
+                        <div class="ipt-box"><input class="addFocus ipt-account heigh40 ng-pristine ng-valid"
+                                                    type="text" placeholder="请输入手机号" maxlength="11"
+                                                    ng-model="bindOption.bindPhone"/></div>
+                        <div class="control-captcha"><input
+                                class="addFocus ipt-account heigh40 width50 input-captcha ng-pristine ng-valid"
+                                type="text" maxlength="6" placeholder="请输入验证码" ng-model="bindOption.msgCaptcha"/> <span
+                                class="pointer btn-captcha ng-binding disabled"
+                                ng-class="{gray: bindOption.grayFlag, disabled: !bindOption.isPhone}"
+                                ng-click="getPhoneCaptcha(0)">获取验证码</span></div>
+                        <div class="sub-bindPhone"><p class="captcha-info" ng-show="!bindOption.isVoice">收不到短信验证码？点击获取<a
+                                href="javascript: void(0)" class="btn-voice disabled"
+                                ng-class="{disabled: !bindOption.isPhone}" ng-click="getPhoneCaptcha(1)">语音验证码</a></p>
+                            <p class="captcha-info ng-hide" ng-show="bindOption.isVoice">您会收到来自950开头的语音验证码，请注意接听</p>
+                        </div>
+                        <div class="button" style="text-align:center"><span class="pointer"
+                                                                            ng-click="bindPhone()">确定</span></div>
+                    </div>
+                    <div ng-show="bindOption.bindOk" class="ng-hide"><p class="font14 green">恭喜您，手机号绑定成功！</p>
+                        <p class="font14 bottom60 ng-binding">绑定的手机号：</p>
+                        <p class="gray bottom-auto">将在3秒后自动进入邮箱</p>
+                        <p class="gray bottom-auto">您也可以点击<span class="red">“立即进入邮箱”</span>进行跳转</p>
+                        <div class="button width100"><span class="width100 pointer"
+                                                           ng-click="goHomepage()">立即进入邮箱</span></div>
+                    </div>
+                </div>
+                <div class="form-background">
+                    <div id="changeTheme" class="themeCtrl"><span
+                            style="background-color: rgb(170, 170, 170);"></span><span
+                            style="background-color: rgb(255, 255, 255);"></span></div>
+                </div>
+            </div>
+            <div id="announcement" class="announcement"
+                 style="position:absolute;right:10px;bottom:15px;width:180px;height:164px;background:#fff;z-index:11111;box-shadow:0 0 0 rgba(23,23,23,.13),0 0 0 rgba(23,23,23,.13),0 0 0 rgba(23,23,23,.13),0 5px 10px rgba(23,23,23,.13)">
+                <div class="icon-cont-announcement" style="margin-top:-43px;text-align:center"><img
+                        src="//mail_wf.cdn.sohusce.com/pc/img/icon_announcement.ae8dd948.png" alt="公告"
+                        class="icon-announcement" style="width:180px;height:120px"/></div>
+                <p class="text-announcement" style="padding:2px 19px;line-height:22px">2017年12月21日搜狐邮箱账号安全体系升级公告</p>
+                <div class="link-cont-announcement"
+                     style="height:32.5px;line-height:32.5px;border-top:1px solid #ececec;text-align:center"><a
+                        href="//mail-promo.sohusce.com/template/announcement.html"
+                        style="color:#ff7b25;text-decoration:none">进入查看<span
+                        style="margin-left:3px;vertical-align:-1px;display:inline-block;width:10px;height:10px;background:url(//mail_wf.cdn.sohusce.com/pc/img/icon_link.5069ea65.png) center/cover"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="area out-footer">
+            <div class="ng-binding">Copyright © 2018 Sohu.com Inc. All rights reserved. 搜狐公司 版权所有</div>
+            <div><span>客服热线： 010-58103760</span><span class="out-footer-space">客服邮箱：webmaster@vip.sohu.com</span></div>
+        </div>
+        <script type="text/javascript">function resize() {
+            var e = document.getElementById("loginDiv"), i = document.documentElement.clientHeight;
+            i &gt; 720 &amp;&amp; e &amp;&amp; (e.style.paddingTop = (i - 720) / 2 + "px")
+        }
+        function preload(e) {
+            for (i = 0; i &lt; e.length; i++)images[i] = new Image, images[i].src = preload.arguments[i]
+        }
+        resize(), window.onresize = function () {
+            setTimeout(function () {
+                resize()
+            }, 0)
+        };
+        var images = [];
+        preload(["//mail_wf.cdn.sohusce.com/pc/img/icon.e7fd65df.png"])</script>
+    </div>
+</div>
+<script type="text/javascript" src="//39d0825d09f05.cdn.sohucs.com/sdk/passport-4.0.3.js"></script>
+<script src="//mail_wf.cdn.sohusce.com/pc/components/lib.a6ea72e9.js"></script>
+<script src="localSrc/ueditor-1.4.3.3/all.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/app.6504d836.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/indexCtrl.c9a00d7f.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/loginCtrl.8c7e0444.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/mailAddrRenderService.6059e06a.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/writeMailCtrl.474cd8a0.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/writeMailService.2b1a0be7.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/mailsCtrl.284aaa49.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/mailDetailCtrl.e9f13a8a.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/contacts-ctrl.5a8c4f72.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/homepageCtrl.5d960752.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/contacts-service.28682b61.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/modelAlertService.20f8c23c.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/fileUploadService.4b8af749.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/directive/contacts-directive.70b1f96c.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/directive/mailListDirective.8dcd6cc0.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/directive/mailDirective.d41d8cd9.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/settingCtrl.975019e2.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/directive/settingDirective.edfa00c2.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/settingService.90b5ca2d.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/directive/select-directive.36c399e9.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/toolsbarService.6620fc90.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/timeService.f32b06ef.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/httpService.7bb9d211.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/service/passportService.33e172b8.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/mailAccountsCtrl.579f96f7.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/controller/skin-ctrl.260fe8f8.js"></script>
+<script type="text/javascript" src="//mail_wf.cdn.sohusce.com/pc/js/common/common.0c060969.js"></script>
+<img src="https://msapi.t.sohu.com/md/6?appid=101305" style="display: none;"/></body>
+</html>

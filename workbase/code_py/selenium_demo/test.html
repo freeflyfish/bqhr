@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">var _BASEPATH_='https://ipcrs.pbccrc.org.cn/';</script>
+<script src="https://ipcrs.pbccrc.org.cn/js/pe.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+<!--
+	Title:忘记密码-录入登录名和验证码页面
+
+ 	@create 2014-10-29
+  	@author 郑丽
+  	@version 3.0.0
+  	@Copyright:中国人民银行征信中心
+ -->
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+		<title>个人信用信息服务平台</title>
+		<link type="text/css" rel="stylesheet"
+			href="https://ipcrs.pbccrc.org.cn/css/public.css" />
+		<link type="text/css" rel="stylesheet"
+			href="https://ipcrs.pbccrc.org.cn/css/page.css" />
+		<link type="text/css" rel="stylesheet" href="https://ipcrs.pbccrc.org.cn/css/new.css" />
+		<script type="text/javascript" src="https://ipcrs.pbccrc.org.cn/js/jquery.js">
+</script>
+		<script type="text/javascript" src="https://ipcrs.pbccrc.org.cn/js/input_notice.js">
+</script>
+		<script src="https://ipcrs.pbccrc.org.cn/js/select.js" type="text/javascript">
+</script>
+		<script type="text/javascript"
+			src="https://ipcrs.pbccrc.org.cn/js/user/resetPassword/resetPassword.js">
+</script>
+		<script type="text/javascript">
+function setCT(certType) {
+	document.getElementById("certType").value = certType;
+}
+
+//页面元素用户真实姓名检验
+/*要求 ：用户的姓名长度为1-30个字符 */
+function checkName() {
+	var name = $.trim($("#name").val());
+	if (name.length < 1) {
+		$("#nameInfo").text("姓名不能为空或空格");
+		$("#nameInfo").removeClass("yes").addClass("no");
+		return false;
+	}/*else if(name.length >30 ){
+					$("#nameInfo").text("姓名不能大于30个字符");
+					$("#nameInfo").removeClass("yes").addClass("no");
+					return false;
+				}*/
+	$("#nameInfo").text("");
+	$("#nameInfo").removeClass("no").addClass("yes");
+	return true;
+
+}
+
+//用户证件号码检验
+/*要求：证件号码由1-30位字母数字组成*/
+function checkCertNo() {
+	var reg = /^\d{15}$|^\d{17}(\d|X)$/;
+	var certNo = $.trim($("#certNo").val());
+	//var reg = new RegExp("^[a-zA-Z0-9]*$");
+	if (certNo.length < 1) {
+		$("#certNoInfo").removeClass("yes").addClass("no");
+		$("#certNoInfo").text("证件号码不能为空或空格");
+		return false;
+	}/*else if(certNo.length >30){
+					$("#certNoInfo").removeClass("yes").addClass("no");
+					$("#certNoInfo").text("证件号码不能大于30个字符");
+					return false;
+				}else if(!reg.test(certNo)){
+					$("#certNoInfo").removeClass("yes").addClass("no");
+					$("#certNoInfo").text("证件号码只能由字母、数字组成");
+					return false;
+				}*/else {
+		if (document.getElementById("certType").value == "0") {
+			if ((certNo.length != 15 && certNo.length != 18)
+					|| (certNo.length == 15 && !reg.test(certNo))
+					|| (certNo.length == 18 && !reg.test(certNo))) {
+				$("#certNoInfo").text("");
+				$("#certNoInfo").text("证件号码是无效的。");
+				$("#certNoInfo").removeClass("yes").addClass("no");
+				return false;
+			}else{
+			$("#certNoInfo").text("");
+			$("#certNoInfo").removeClass("no").addClass("yes");
+			return true;
+			}
+		} else {
+			$("#certNoInfo").text("");
+			$("#certNoInfo").removeClass("no").addClass("yes");
+			return true;
+		}
+	}
+}
+
+//页面元素用户登录名格式检验
+/*  要求：登录名由6-16位数字、字母、“_”、“-”、“/”组成    */
+function checkLoginName() {
+	var loginName = $.trim($("#loginname").val());
+	var reg = new RegExp("^[a-zA-Z0-9\-_/]*$");
+	if (loginName.length < 1) {
+		$("#loginNameInfo").text("登录名不能为空或空格");
+		$("#loginNameInfo").removeClass("yes").addClass("no");
+		return false;
+	}
+	if (loginName.length < 6) {
+		$("#loginNameInfo").text("登录名不能小于6位字符");
+		$("#loginNameInfo").removeClass("yes").addClass("no");
+		return false;
+	}/*else if(loginName.length > 16){
+					$("#loginNameInfo").text("登录名不能大于16个字符");
+					$("#loginNameInfo").removeClass("yes").addClass("no");
+					return false;
+				}*/else if (!reg.test(loginName)) {
+		$("#loginNameInfo").text("登录名由字母、数字、_、-、/组成 ");
+		$("#loginNameInfo").removeClass("yes").addClass("no");
+		return false;
+	} else {
+		$("#loginNameInfo").text("");
+		$("#loginNameInfo").removeClass("no").addClass("yes");
+		return true;
+	}
+}
+
+//页面元素 图形验证码检验
+function checkImageCode() {
+	if (document.getElementById('_@IMGRC@_').value == '') {
+		$("#imageCodeInfo").text("验证码不能为空或空格");
+		$("#imageCodeInfo").removeClass("yes").addClass("no");
+		return false;
+	}
+	$("#imageCodeInfo").text("");
+	$("#imageCodeInfo").removeClass("no").addClass("yes");
+	return true;
+}
+
+function check() {
+	return checkLoginName() && checkName() && checkCertNo() && checkImageCode();
+}
+</script>
+
+
+	</head>
+
+
+	<body>
+		<!-- 主体部分 -->
+		<div class="gray-bk">
+			<div class="now">
+				&nbsp;&nbsp;
+				<span>当前位置：</span><a href="https://ipcrs.pbccrc.org.cn/" target="_parent">首页</a><span>
+					&gt; 重置密码</span>
+			</div>
+			<div class="white-con">
+				<div class="title-1">
+					<span>重置密码</span>&nbsp;
+					<span class="span-12 span-normal span-grey2">&nbsp;&nbsp;&nbsp;&nbsp;<span
+						class="span-red">填写身份信息</span> -&gt; 设置新密码 -&gt; 验证身份 -&gt; 提交</span>
+				</div>
+				<script type="text/javascript" language="Javascript1.1">
+
+<!-- Begin
+
+     var bCancel = false;
+
+    function validateFindPasswordForm(form) {
+        if (bCancel)
+      return true;
+        else
+       return validateMaxLength(form) && validateRequired(form) && validateMask(form) && validateMinLength(form) && validateMaskWithCn(form) && validatePassword(form) && validateTwoFieldsEqual(form);
+   }
+
+    function maxlength () {
+     this.aa = new Array("loginname", "登录名 不能大于 16 个字符.", new Function ("varName", "this.maxlength='16'; this.mask=/^[a-zA-Z0-9\\-_/]*$/; this.minlength='6';  return this[varName];"));
+    }
+
+    function required () {
+     this.aa = new Array("loginname", "登录名 不能为空或空格.", new Function ("varName", "this.maxlength='16'; this.mask=/^[a-zA-Z0-9\\-_/]*$/; this.minlength='6';  return this[varName];"));
+    }
+
+    function mask () {
+     this.aa = new Array("loginname", "登录名 是无效的.", new Function ("varName", "this.maxlength='16'; this.mask=/^[a-zA-Z0-9\\-_/]*$/; this.minlength='6';  return this[varName];"));
+    }
+
+    function minlength () {
+     this.aa = new Array("loginname", "登录名 不能小于 6 个字符.", new Function ("varName", "this.maxlength='16'; this.mask=/^[a-zA-Z0-9\\-_/]*$/; this.minlength='6';  return this[varName];"));
+    }
+
+    function maskWithCn () {
+    }
+
+    function password () {
+    }
+
+    function twofields () {
+    }
+
+
+
+function validatePassword(form){var isValid = true, focusField = null, i = 0, fields = new Array(),pwd = new password(),x;for (x in pwd) {var field = form[pwd[x][0]];if (field.type == 'password') {var _p=trim(field.value);if(!(/[0-9]/g.test(_p)&&/[a-z]/g.test(_p)&&/[A-Z]/g.test(_p))){if (i == 0)focusField = field;fields[i++] = pwd[x][1];isValid = false;}}}if (fields.length > 0) {clearErrorField();alert(fields.join('\n'));focusField.focus();}return isValid;};
+function validateMaskWithCn(form){var isValid=true,focusField=null,i=0,fields=new Array(),oMaskedCn=new maskWithCn(),x;for(x in oMaskedCn){var field=form[oMaskedCn[x][0]];if((field.type=="text"||field.type=="textarea"||field.type=="password")&&(field.value.length>0)){var maskstr=oMaskedCn[x][2]("mask");if(maskstr&&maskstr.source.substr(0,2)=="^["){maskstr="/^[\\u4e00-\\u9fa5"+maskstr.source.substring(2)+"/"}if(!matchPattern(field.value,eval(maskstr))){if(i==0){focusField=field}fields[i++]=oMaskedCn[x][1];isValid=false;}}}if(fields.length>0){clearErrorField();alert(fields.join("\n"));focusField.focus();}return isValid;};
+function validateMaxLength(a){var h=true,d=null,c=0,e=new Array(),j=new maxlength(),g;for(g in j){var f=a[j[g][0]];if(f.type=="text"||f.type=="textarea"||f.type=="password"){var b=parseInt(j[g][2]("maxlength"));if(trim(f.value).length>b){if(c==0){d=f}e[c++]=j[g][1];h=false;}}}if(e.length>0){clearErrorField();alert(e.join("\n"));d.focus();}return h;};
+function validateTwoFieldsEqual(a){var m=true,g=null,e=0,h=new Array(),f=new twofields(),k;for(k in f){var j=a[f[k][0]];var b=a[f[k][2]("cmpfield")];if(j.type=="text"||j.type=="textarea"||j.type=="select-one"||j.type=="radio"||j.type=="password"){var l;var c;if(j.type=="select-one"){var d=j.selectedIndex;l=j.options[d].value;c=b.options[d].value}else{l=j.value;c=b.value;}if(l!=c){if(e==0){g=j;}h[e++]=f[k][1];m=false;}}}if(h.length>0){clearErrorField();alert(h.join("\n"));g.focus();}return m;};
+var clearErrorField=function(){var a=document.getElementById("_error_field_"),f2=document.getElementById("_@MSG@_");if(a){a.innerHTML=""}if(f2){f2.innerHTML="";}};
+			function validateRequired(a) {var n=true,e=null,c=0,g=new Array(),f=new required(),j;for(j in f){var h=a[f[j][0]];if(h.type=="text"||h.type=="textarea"||h.type=="file"||h.type=="select-one"||h.type=="radio"||h.type=="password"||h.type==undefined){var m="";if(h.type=="select-one"){var b=h.selectedIndex;if(b>=0){m=h.options[b].value;}}else{if(h.type==undefined){var l=h.length,d=[];for(var k=0;k<l;k++){if(h[k].checked==true){d.push(h[k].value);}}if(d.length==1){m=d[0];}else{if(d.length>1){m=d.join(",")}}}else{m=h.value;}}if(trim(m).length==0){if(c==0&&h.type!=undefined){e=h;}g[c++]=f[j][1];n=false;}}}if(g.length>0){clearErrorField();alert(g.join("\n"));if(e){e.focus();}}return n;};
+			function trim(a) {return a.replace(/^\s*/,"").replace(/\s*$/,"");};
+function validateEmail(f) {var e=true,d=null,c=0,b=new Array(),h=new email(),a;for(a in h){if((f[h[a][0]].type=="text"||f[h[a][0]].type=="textarea")&&(f[h[a][0]].value.length>0)){var g=f[h[a][0]].value.replace(/(^\s+)|\s+$/g,"");if(!checkEmail(g)){if(c==0){d=f[h[a][0]];}b[c++]=h[a][1];e=false;}}}if(b.length>0){clearErrorField();alert(b.join("\n"));d.focus();}return e;};
+			function checkEmail(b){if(b.length==0){return true}var r=/^(.+)@(.+)$/,p='\\(\\)<>@,;:\\\\\\"\\.\\[\\]',k="[^\\s"+p+"]",d='("[^"]*")',q=/^(\d{1,3})[.](\d{1,3})[.](\d{1,3})[.](\d{1,3})$/,a=k+"+",o="("+a+"|"+d+")",l=new RegExp("^"+o+"(\\."+o+")*$"),f=new RegExp("^"+a+"(\\."+a+")*$"),c=b.match(r);if(c==null){return false;}var s=c[1],t=c[2];if(s.match(l)==null){return false;}var j=t.match(q);if(j!=null){for(var m=1;m<=4;m++){if(j[m]>255){return false;}}return true;}var g=t.match(f);if(g==null){return false;}var h=new RegExp(a,"g"),e=t.match(h),n=e.length;if((e[e.length-1].length<2)||(e[e.length-1].length>3)){return false;}if(n<2){return false;}return true;};
+function validateIdentityCard(a){var k=true,g=null,e=0,h=new Array(),c=new identitycard();for(x in c){if((a[c[x][0]].type=="text"||a[c[x][0]].type=="textarea")&&(a[c[x][0]].value.length>0)){var l=c[x][2]("wname"),b=c[x][2]("wvalue"),j=a[l],f;if(j){if(j.type=="select-one"){var d=j.selectedIndex;if(d>=0){f=j.options[d].value}}else{f=j.value}}if((!j||j&&b!==null&&f==b)&&!checkIdcard(a[c[x][0]].value)){if(e==0){g=a[c[x][0]]}h[e++]=c[x][1];k=false;}}}if(h.length>0){clearErrorField();alert(h.join("\n"));g.focus();}return k;};
+			function checkIdcard(d){if(d == null)return false;switch(d.length){case 15:return /^[0-9]{15}$/.test(d);case 18:return /^[0-9]{17}(X|[0-9])$/.test(d);default:return false;}};
+function validateMask(f){var h=true,e=null,d=0,b=new Array(),c=new mask(),a;for(a in c){var g=f[c[a][0]];if((g.type=="text"||g.type=="textarea"||g.type=="password")&&(g.value.length>0)){if(!matchPattern(g.value,c[a][2]("mask"))){if(d==0){e=g;}b[d++]=c[a][1];h=false;}}}if(b.length>0){clearErrorField();alert(b.join("\n"));e.focus();}return h;};
+			function matchPattern(b,a){return a.exec(b)};
+function validateMinLength(b){var h=true,d=null,c=0,e=new Array(),j=new minlength(),g;for(g in j){var f=b[j[g][0]];if(f.type=="text"||f.type=="textarea"||f.type=="password"){var a=parseInt(j[g][2]("minlength"));if((trim(f.value).length>0)&&(trim(f.value).length<a)){if(c==0){d=f;}e[c++]=j[g][1];h=false;}}}if(e.length>0){clearErrorField();alert(e.join("\n"));d.focus();}return h;};
+
+//End -->
+</script>
+
+
+				<form name="findPasswordForm" method="post" action="/resetPassword.do;jsessionid=ZRhNZydhcTTg1RvyyfkllB9V6zFqR1GypvlcP1Gtzwgnsg5SmGlT!1898234888" onsubmit="return check();"><input type="hidden" name="org.apache.struts.taglib.html.TOKEN" value="54f316eab679b6c4feec6e40134186c9">
+					<input type="hidden" name="method" value="checkLoginName">
+					<div class="table-con padding_top_50">
+						<ul class="padding_left_40">
+							<li class="erro_div1">
+
+								<span id="_error_field_">当前页面已过期。
+</>
+							</li>
+							<li class="height32">
+								<font class="regist_text span-14"><label class="span-red">
+										*
+									</label>登录名：</font>
+								<input type="text"
+									value=""
+									maxlength="16" name="loginname" class="login_input"
+									id="loginname" onfocus="displayYes(this);"
+									onblur="displayNo(this);checkLoginName();" />
+								<span class="notice1 span-grey">请输入您的登录名</span>
+								<span class="span-grey" id="loginNameInfo"></span>
+							</li>
+
+
+
+
+
+							<li class="margin_top_20 height32">
+								<font class="regist_text span-14"><label class="span-red">
+										*
+									</label> 姓名：</font>
+								<input  maxlength="30"  type="text" name="name"
+									value="" id="name"
+									class="login_input" onfocus="displayYes(this);"
+									onblur="displayNo(this);checkName();" />
+								<span class="notice1 span-grey">请输入您的真实姓名，例如：“张三”。</span>
+								<span id="nameInfo" class="span-grey"></span>
+							</li>
+							<li class="margin_top_20 height32">
+								<font class="regist_text span-14"><label class="span-red">
+										*
+									</label> 证件类型：</font>
+								<span class="select_box">
+									<div class="open_select_box">
+										<span class="open_select">身份证</span>
+									</div>
+									<div class="select_list">
+										<input id="certType" type="hidden" name="certType" value="0" />
+										<ul>
+
+												<li onclick="setCT('0')">
+													<span class="currency_type"> 身份证 </span>
+												</li>
+
+												<li onclick="setCT('1')">
+													<span class="currency_type"> 户口簿 </span>
+												</li>
+
+												<li onclick="setCT('2')">
+													<span class="currency_type"> 护照 </span>
+												</li>
+
+												<li onclick="setCT('3')">
+													<span class="currency_type"> 军官证 </span>
+												</li>
+
+												<li onclick="setCT('4')">
+													<span class="currency_type"> 士兵证 </span>
+												</li>
+
+												<li onclick="setCT('5')">
+													<span class="currency_type"> 港澳居民来往内地通行证 </span>
+												</li>
+
+												<li onclick="setCT('6')">
+													<span class="currency_type"> 台湾同胞来往内地通行证 </span>
+												</li>
+
+												<li onclick="setCT('7')">
+													<span class="currency_type"> 临时身份证 </span>
+												</li>
+
+												<li onclick="setCT('8')">
+													<span class="currency_type"> 外国人居留证 </span>
+												</li>
+
+												<li onclick="setCT('9')">
+													<span class="currency_type"> 警官证 </span>
+												</li>
+
+												<li onclick="setCT('A')">
+													<span class="currency_type"> 香港身份证 </span>
+												</li>
+
+												<li onclick="setCT('B')">
+													<span class="currency_type"> 澳门身份证 </span>
+												</li>
+
+												<li onclick="setCT('C')">
+													<span class="currency_type"> 台湾身份证 </span>
+												</li>
+
+												<li onclick="setCT('X')">
+													<span class="currency_type"> 其他证件 </span>
+												</li>
+
+										</ul>
+									</div> </span>
+								<!--<span  id="certTypeInfo" class="span-grey"></span> -->
+							</li>
+							<li class="margin_top_20 height32">
+								<font class="regist_text span-14"><label class="span-red">
+										*
+									</label> 证件号码：</font>
+								<input type="text" name="certNo"
+									value=""
+									maxlength="18" class="login_input" id="certNo"
+									onfocus="displayYes(this);"
+									onblur="displayNo(this);checkCertNo();" />
+								<span class="notice1 span-grey">请输入您的有效证件号码，英文字母区分大小写</span>
+								<span class="span-grey" id="certNoInfo"></span>
+							</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<li class="margin_top_20 height32">
+								<font class="regist_text span-14"><label class="span-red">
+										*
+									</label> 验证码：</font>
+								<input class = "login_input yzm_input" maxLength="6" type="text" id="_@IMGRC@_" name="_@IMGRC@_" onfocus="if(document.getElementById('_@MSG@_')!=null)document.getElementById('_@MSG@_').innerHTML='';">
+<img src="/imgrc.do?0.1481894664887713" id="imgrc" class = "yzm_img"/>
+<a class = "yzm_a" href="###" onclick="document.getElementById('imgrc').src='/imgrc.do?a='+new Date().getTime()+';'">看不清，换一个</a>
+<script>document.getElementById('imgrc').style.display='';</script>
+
+								<span class="span-grey" id="imageCodeInfo" style="width: 150px;"></span>
+							</li>
+							<li class="padding_top_30">
+								<font class="regist_text">&nbsp;</font>
+								<input type="submit" class="regist_btn span-14 span-white"
+									value="下一步" />
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
